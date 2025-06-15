@@ -1,1 +1,56 @@
-// app global css in SCSS form
+@import 'src/css/fonts.css';
+@import 'src/css/main.scss';
+@import 'primeicons/primeicons.css';
+
+body {
+  font-family: 'Vazir';
+}
+
+.q-layout {
+  direction: rtl;
+}
+
+.description {
+  font-size: 17px;
+}
+
+.phone {
+  font-size: 0.9rem;
+}
+
+.phone:hover,
+.phone:hover a {
+  text-decoration: underline;
+  color: $primary;
+}
+
+.instagram-gradient i {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.address {
+  font-size: 0.9rem;
+}
+
+.Introducing {
+  line-height: 1.5rem;
+  text-align: center;
+  font-size: 15.3px;
+}
+
+.Introducing p {
+  max-width: 500px;
+  margin: 10px 15px;
+}
+
+.Image {
+  max-width: 400px;
+  width: 100%;
+}
+
+.q-img__content > div {
+  font-size: 14px;
+  padding: 5px;
+}
