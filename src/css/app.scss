@@ -1,6 +1,7 @@
 @import 'src/css/fonts.css';
 @import 'src/css/main.scss';
 @import 'primeicons/primeicons.css';
+@import 'swiper/swiper-bundle.css';
 
 body {
   font-family: 'Vazir';
@@ -53,4 +54,9 @@ body {
 .q-img__content > div {
   font-size: 14px;
   padding: 5px;
+}
+
+.commentBody {
+  min-height: 100px;
+  width: 95%;
 }
