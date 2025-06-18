@@ -2,6 +2,7 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file
 
 import { defineConfig } from '#q-app/wrappers';
+import { Notify } from 'quasar';
 
 export default defineConfig((/* ctx */) => {
   return {
@@ -38,11 +39,11 @@ export default defineConfig((/* ctx */) => {
       },
 
       vueRouterMode: 'history',
-       extendWebpack(cfg) {
+      extendWebpack(cfg) {
         cfg.module.rules.push({
           test: /\.html$/,
-          loader: 'html-loader'
-        })
+          loader: 'html-loader',
+        });
       },
       // available values: 'hash', 'history'
       // vueRouterBase,
@@ -76,11 +77,10 @@ export default defineConfig((/* ctx */) => {
         ],
       ],
     },
-        htmlVariables: {
+    htmlVariables: {
       title: 'تعمیرات تلویزیون یزد', // متغیرهای دلخواه
-      description: 'تعمیر تخصصی تلویزیون در یزد'
+      description: 'تعمیر تخصصی تلویزیون در یزد',
     },
-
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#devserver
     devServer: {
@@ -105,7 +105,7 @@ export default defineConfig((/* ctx */) => {
       // directives: [],
 
       // Quasar plugins
-      plugins: [],
+      plugins: ['Notify'],
     },
 
     // animations: 'all', // --- includes all animations
@@ -147,10 +147,10 @@ export default defineConfig((/* ctx */) => {
 
       // pwaExtendGenerateSWOptions (cfg) {},
       // pwaExtendInjectManifestOptions (cfg) {}
-        prerender: {
+      prerender: {
         enabled: true,
-        routes: [ '/' ] // فقط صفحه اصلی
-  }
+        routes: ['/'], // فقط صفحه اصلی
+      },
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/developing-pwa/configuring-pwa

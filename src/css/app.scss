@@ -60,3 +60,39 @@ body {
   min-height: 100px;
   width: 95%;
 }
+
+.authForm {
+  max-width: 500px;
+  width: 100%;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.authForm .q-field__label {
+  left: auto;
+  right: 0;
+  transform-origin: right top;
+}
+.authForm .q-field__append {
+  padding: 0;
+  margin: 0;
+}
+.authForm .q-field__native {
+  width: 85%;
+  direction: ltr;
+}
+.authForm .q-field__control {
+  direction: ltr;
+}
+.authForm .icon {
+  position: absolute;
+  right: 20px;
+  top: 23px;
+  cursor: pointer;
+}
+.authForm a:hover {
+  color: $primary;
+  text-decoration: underline;
+}

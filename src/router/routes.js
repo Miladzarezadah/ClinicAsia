@@ -3,14 +3,26 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '',name:"home", component: () => import('pages/IndexPage.vue') },
-      // { path: 'services', component: () => import('pages/ServicesPage.vue') },
-      // { path: 'contact', component: () => import('pages/ContactPage.vue') },
+      { path: '', name: 'home', component: () => import('pages/IndexPage.vue') },
+    ],
+  },
+  {
+    path: '/auth',
+    component: () => import('layouts/LoginLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Login',
+        component: () => import('pages/Authentication/LoginPage.vue'),
+      },
+      {
+        path: 'signup',
+        name: 'Register',
+        component: () => import('pages/Authentication/SignUpPage.vue')
+      }
     ],
   },
 
-  // Always leave this as last one,
-  // but you can also remove it
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue'),
