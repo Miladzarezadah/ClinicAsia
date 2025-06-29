@@ -1,5 +1,6 @@
 <template>
-  <div v-if="loading" class="row justify-center q-mt-xl">
+  <div :id="id">
+    <div v-if="loading" class="row justify-center q-mt-xl">
     <q-spinner-bars color="primary" size="4rem" :thickness="5"  />
   </div>
   <swiper
@@ -33,6 +34,7 @@
       </q-card>
     </swiper-slide>
   </swiper>
+  </div>
 </template>
 
 <script setup>
@@ -42,6 +44,12 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/autoplay';
+
+const prop= defineProps({
+  id: String
+});
+
+console.log(prop.id);
 
 const comments = ref([]);
 const swiperInstance = ref(null);

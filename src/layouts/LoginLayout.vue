@@ -11,7 +11,6 @@ import { computed, onMounted, reactive } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 //////////////////////////////////////////////////////////////////
 
-// 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
 
 const login = reactive({
   username: '',
@@ -27,7 +26,7 @@ const signup = reactive({
 const route = useRoute();
 const router = useRouter();
 
-const clientId = 'REPLACED_GOOGLE_CLIENT_ID';
+const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 const changeLabel = computed(() => {
   if (route.path == '/auth') return 'ورود';
@@ -67,7 +66,7 @@ async function initializeGoogleSignIn() {
     await loadGoogleSDK();
 
     google.accounts.id.initialize({
-      client_id: clientId,
+      client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
       callback: (response) => {
         handleGoogleResponse(response);
       },

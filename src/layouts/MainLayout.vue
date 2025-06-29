@@ -1,11 +1,10 @@
 <script setup>
 import { Notify } from 'quasar';
 import { ref } from 'vue';
-const drawer = ref(false);
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 
+const drawer = ref(false);
 const router = useRouter();
-const route = useRoute();
 
 const drawerList = ref([
   { id: 1, label: 'معرفی', name: 'ourInformation', icon: 'contact_mail', iconColor: 'info' },
@@ -16,20 +15,7 @@ const drawerList = ref([
     icon: 'construction',
     iconColor: 'primary',
   },
-  {
-    id: 3,
-    label: 'نظرات',
-    name: 'commentSlider',
-    icon: 'diversity_1',
-    iconColor: 'red',
-  },
-  {
-    id: 4,
-    label: 'نظرات مشتریان',
-    name: 'customerPersuasion',
-    icon: 'psychology',
-    iconColor: 'orange',
-  },
+  { id: 3, label: 'نظرات', name: 'commentSlider', icon: 'diversity_1', iconColor: 'red' },
   {
     id: 5,
     label: 'تماس با ما',
@@ -39,28 +25,25 @@ const drawerList = ref([
   },
 ]);
 
-function scrollToSection(sectionName) {
-  if (route.name !== 'home') {
-    router.push({ name: 'home' }).then(() => {
-      setTimeout(() => {
-        scrollNow(sectionName);
-      }, 300);
-    });
-  } else {
-    scrollNow(sectionName);
-  }
-}
+const scrollToSection = (sectionName) => {
+  setTimeout(() => {
+    const element = document.getElementById(sectionName);
+    if (element) {
+      const yOffset = -80;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
-function scrollNow(sectionName) {
-  const pageComponent = router.currentRoute.value.matched[0].instances.default;
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth'
+      });
+    }
+  }, 100); 
+};
 
-  if (pageComponent && pageComponent[sectionName + 'Section']?.$el) {
-    pageComponent[sectionName + 'Section'].$el.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    });
-  }
-}
+const handleDrawerItemClick = (sectionName) => {
+  scrollToSection(sectionName);
+  drawer.value = false;
+};
 
 const token1 = localStorage.getItem('authToken');
 
@@ -69,10 +52,9 @@ function logout() {
   router.push('/auth');
   Notify.create({
     message: 'شما با موفقیت خارج شدید.',
-    type: 'info'
+    type: 'info',
   });
 }
-
 </script>
 <template>
   <q-layout view="hHr lpR fFf">
@@ -91,8 +73,8 @@ function logout() {
         </div>
         <div v-else>
           <q-btn-dropdown round flat dropdown-icon="person" no-icon-animation>
-            <q-list style="width: 120px" separator >
-              <q-item clickable v-close-popup >
+            <q-list style="width: 120px" separator>
+              <q-item clickable v-close-popup>
                 <q-item-action class="q-mr-md">
                   <q-icon name="person" size="sm" />
                 </q-item-action>
@@ -101,7 +83,7 @@ function logout() {
                 </q-item-section>
               </q-item>
 
-              <q-item clickable v-close-popup >
+              <q-item clickable v-close-popup>
                 <q-item-action class="q-mr-md">
                   <q-icon name="notifications" size="sm" />
                 </q-item-action>
@@ -132,7 +114,7 @@ function logout() {
             v-ripple
             v-for="item in drawerList"
             :key="item.id"
-            @click="scrollToSection(item.name)"
+            @click="handleDrawerItemClick(item.name)"
           >
             <q-item-section avatar>
               <q-icon :name="item.icon" :color="item.iconColor" />

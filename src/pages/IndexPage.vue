@@ -4,36 +4,25 @@ import OurInformation from 'src/components/OurInformation.vue';
 import ServiceIntroduction from 'src/components/ServiceIntroduction.vue';
 import CustomerPersuasion from 'src/components/CustomerPersuasion.vue';
 import CommentSlider from 'src/components/CommentSlider.vue';
-import { ref } from 'vue';
-const ourInformation = ref(null);
-const serviceIntroduction = ref(null);
-const commentSlider = ref(null);
-const customerPersuasion = ref(null);
-const contactUs = ref(null);
-defineExpose({
-  ourInformation,
-  serviceIntroduction,
-  commentSlider,
-  customerPersuasion,
-  contactUs,
-});
 </script>
 
 <template>
   <q-page class="q-pa-sm">
     <div>
-      <OurInformation ref="ourInformation" />
+      <OurInformation id="ourInformation" />
       <div>
-        <div class="q-mt-xl q-mr-md-lg q-mr-xs-none">
-          <ServiceIntroduction ref="serviceIntroduction" />
+        <div class="q-mt-xl q-mr-md-lg q-mr-xs-none" id="serviceIntroduction">
+          <ServiceIntroduction />
         </div>
-        <CommentSlider ref="commentSlider" />
 
+        <CommentSlider id="commentSlider" />
         <div
           class="q-mr-md-xl q-mr-xs-none q-pr-md-xl q-pr-xs-none q-mt-xl q-pt-md row justify-around items-center"
+          id="customerPersuasion"
         >
-          <CustomerPersuasion ref="customerPersuasion" />
-          <ContactUs class="q-mt-xs-lg q-mt-md-none" ref="contactUs" />
+          <CustomerPersuasion />
+
+          <ContactUs id="contactUs" class="q-mt-xs-lg q-mt-md-none" />
         </div>
       </div>
     </div>
