@@ -1,14 +1,13 @@
 <template>
+  <div v-if="loading" class="row justify-center q-mt-xl">
+    <q-spinner-bars color="primary" size="4rem" :thickness="5"  />
+  </div>
   <swiper
     :modules="[Autoplay]"
-    :slides-per-view="3"
-    :breakpoints="{
-      0: { slidesPerView: 1 },
-      600: { slidesPerView: 2 },
-      1024: { slidesPerView: 3 },
-    }"
-    v-if="comments.length >= 3"
+    :breakpoints="computedBreakpoints"
+    v-if="comments.length >= 2 && !loading"
     :space-between="20"
+    :slides-per-view="defaultSlides"
     :loop="true"
     :autoplay="{ delay: 0, disableOnInteraction: false }"
     :speed="5000"
@@ -37,7 +36,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { api } from 'boot/axios';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay } from 'swiper/modules';
@@ -46,12 +45,35 @@ import 'swiper/css/autoplay';
 
 const comments = ref([]);
 const swiperInstance = ref(null);
+const loading = ref(true);
+
+const defaultSlides = computed(() => {
+  return comments.value.length <= 3 ? 1 : 2;
+});
+
+const computedBreakpoints = computed(() => {
+  if (comments.value.length <= 3) {
+    return {
+      0: { slidesPerView: 1 },
+      600: { slidesPerView: 2 },
+      1024: { slidesPerView: 2 },
+    };
+  } else {
+    return {
+      0: { slidesPerView: 1 },
+      600: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+    };
+  }
+});
 
 onMounted(async () => {
   try {
     const res = await api.get('/comments');
     comments.value = res.data.comments;
+    loading.value = false;
   } catch (e) {
+    loading.value = true;
     console.error(e);
   }
 });

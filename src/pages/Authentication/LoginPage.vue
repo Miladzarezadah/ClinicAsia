@@ -39,12 +39,12 @@ function findEmit(Input) {
 <template>
   <q-page padding>
     <div class="column items-center q-gutter-y-xl" dir="rtl">
-      <h3>ورود</h3>
-      <div class="q-gutter-y-lg" style="width: 100%">
+      <h4>ورود</h4>
+      <div class="q-gutter-y-lg q-mt-xs" style="width: 100%">
         <NormalInput :input="Inputs" @update:input="findEmit" />
         <div class="q-mt-lg">
           <router-link to="/auth/signup"
-            >هنوز در سامانه ثبت نام نکردید؟</router-link
+            >هنوز حساب ندارید؟</router-link
           >
         </div>
       </div>

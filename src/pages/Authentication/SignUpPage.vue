@@ -61,11 +61,11 @@ function findEmit(Input) {
 <template>
   <q-page padding>
     <div class="column items-center q-gutter-y-xl" dir="rtl">
-      <h3>ثبت نام</h3>
+      <h4>ثبت نام</h4>
       <div class="q-gutter-y-lg q-mt-xs" style="width: 100%">
         <NormalInput :input="Inputs" @update:input="findEmit" />
         <div class="q-mt-lg q-mb-xs">
-          <router-link to="/auth">در سامانه ثبت نام کردید؟</router-link>
+          <router-link to="/auth">قبلا ثبت نام کردید؟</router-link>
         </div>
       </div>
     </div>

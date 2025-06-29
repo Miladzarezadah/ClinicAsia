@@ -62,7 +62,7 @@ body {
 }
 
 .authForm {
-  max-width: 500px;
+  max-width: 400px;
   width: 100%;
   border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -95,4 +95,16 @@ body {
 .authForm a:hover {
   color: $primary;
   text-decoration: underline;
+}
+
+.nsm7Bb-HzV7m-LgbsSe-bN97Pc-sM5MNb {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 10px !important  ;
+}
+
+.nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-BPrWId {
+  -webkit-flex-grow: unset !important;
+  flex-grow: unset !important;
+  font-family: 'Vazir', sans-serif !important;
 }

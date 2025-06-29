@@ -1,11 +1,20 @@
-import jwt_encode from "jwt-encode";
+import jwt_encode from 'jwt-encode';
 
-export function createToken(userId) {
+export function createToken(user) {
   const payload = {
-    user_id: userId,
-    exp: Math.floor(Date.now() / 1000) + 60 * 60 * 2,
+    'https://hasura.io/jwt/claims': {
+      'x-hasura-allowed-roles': ['user'],
+      'x-hasura-default-role': user.role,
+      'x-hasura-user-id': user.id.toString(),
+    },
+    user: {
+      id: user.id,
+      email: user.email,
+      role: user.role,
+    },
+    exp: Math.floor(Date.now() / 1000) + 60 * 60 * 5,
   };
-  const secret = "ZXCV1qazSXX";
+  const secret = 'ZXCV1qazSXX';
   const token = jwt_encode(payload, secret);
   return token;
 }
@@ -18,11 +27,11 @@ export function parseJwt(token) {
       atob(base64)
         .split('')
         .map((c) => `%${('00' + c.charCodeAt(0).toString(16)).slice(-2)}`)
-        .join('')
+        .join(''),
     );
     return JSON.parse(jsonPayload);
   } catch (e) {
-    console.error("Invalid token", e);
+    console.error('Invalid token', e);
     return null;
   }
 }
